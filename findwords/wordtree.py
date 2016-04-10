@@ -21,9 +21,17 @@ class WordTree(object):
         self._entry_count += 1
         self.root.insert(entry)
 
-class Root(object):
-    def __init__(self):
-        self._children = []
+class Node(object):
+    def __init__(self, word):
+        self._value = word[0]
+        self._children = None
+        if len(word) is 1:
+            self._is_word = True
+            print '{} true'.format(self._value)
+        else:
+            self._is_word = False
+            print '{} {} false'.format(self._value, word[1:])
+            self._add_child(word[1:])
 
     def insert(self, word):
         child_node = self._find_child(word[0])
@@ -52,26 +60,21 @@ class Root(object):
             return False
         return child_node.is_word(word[1:])
 
+    def _ensure_children(self):
+        if self._children is None:
+            self._children = []
+
     def _add_child(self, word):
+        self._ensure_children()
         self._children.append(Node(word))
 
     def _find_child(self, value):
+        self._ensure_children()
         for child in self._children:
             if child._value is value:
                 return child
         return None
 
-class Node(Root):
-    def __init__(self, word):
-        super(Node, self).__init__()
-        self._value = word[0]
-        if len(word) is 1:
-            self._is_word = True
-            print '{} true'.format(self._value)
-        else:
-            self._is_word = False
-            print '{} {} false'.format(self._value, word[1:])
-            self._add_child(word[1:])
-        
-    def value(self):
-        return self._value
+class Root(Node):
+    def __init__(self):
+        self._children = []
