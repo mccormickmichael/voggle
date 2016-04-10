@@ -1,25 +1,5 @@
 #!/usr/bin/python
 
-class WordTree(object):
-    def __init__(self, entries):
-        self.root = Root()
-        self._entry_count = 0
-        for entry in entries:
-            self._add(entry)
-
-    def entries(self):
-        return self._entry_count
-
-    def is_word(self, word):
-        return self.root.is_word(word)
-
-    def is_prefix(self, prefix):
-        return self.root.is_prefix(prefix)
-
-    def _add(self, entry):
-        self._entry_count += 1
-        self.root.insert(entry)
-
 class Node(object):
     def __init__(self, word):
         self._value = word[0]
@@ -74,6 +54,16 @@ class Node(object):
                 return child
         return None
 
-class Root(Node):
-    def __init__(self):
+class WordTree(Node):
+    def __init__(self, entries):
         self._children = []
+        self._entry_count = 0
+        for entry in entries:
+            self.insert(entry)
+
+    def count(self):
+        return self._entry_count
+
+    def insert(self, entry):
+        self._entry_count += 1
+        super(WordTree, self).insert(entry)

@@ -8,11 +8,11 @@ class TestWordTree(unittest.TestCase):
 
     def test_empty_dictionary(self):
         tree = wordtree.WordTree([])
-        self.assertEqual(0, tree.entries())
+        self.assertEqual(0, tree.count())
 
     def test_count_one_entry(self):
         tree = wordtree.WordTree(['as'])
-        self.assertEqual(1, tree.entries())
+        self.assertEqual(1, tree.count())
 
     def test_word_one_entry(self):
         tree = wordtree.WordTree(['as'])
@@ -36,7 +36,7 @@ class TestWordTree(unittest.TestCase):
 
     def test_count_two_entries(self):
         tree = wordtree.WordTree(['as', 'at'])
-        self.assertEquals(2, tree.entries())
+        self.assertEquals(2, tree.count())
 
     def test_word_two_entries(self):
         tree = wordtree.WordTree(['as', 'at'])
