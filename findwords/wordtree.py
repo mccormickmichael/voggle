@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 class WordTree(object):
-
     def __init__(self, entries):
         self.root = Root()
         self._entry_count = 0

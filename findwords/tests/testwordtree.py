@@ -33,3 +33,28 @@ class TestWordTree(unittest.TestCase):
     def test_not_prefix_one_entry(self):
         tree = wordtree.WordTree(['as'])
         self.assertFalse(tree.is_prefix('z'))
+
+    def test_count_two_entries(self):
+        tree = wordtree.WordTree(['as', 'at'])
+        self.assertEquals(2, tree.entries())
+
+    def test_word_two_entries(self):
+        tree = wordtree.WordTree(['as', 'at'])
+        self.assertTrue(tree.is_word('as'))
+        self.assertTrue(tree.is_word('at'))
+
+    def test_longer_words(self):
+        tree = wordtree.WordTree(['astatine', 'asterisk', 'at', 'as', 'ass'])
+        self.assertTrue(tree.is_word('as'))
+        self.assertTrue(tree.is_word('at'))
+        self.assertTrue(tree.is_word('ass'))
+        self.assertFalse(tree.is_word('astatin'))
+
+    def test_longer_prefixes(self):
+        tree = wordtree.WordTree(['astatine', 'asterisk', 'at', 'as', 'ass'])
+        self.assertTrue(tree.is_prefix('as'))
+        self.assertTrue(tree.is_prefix('astatin'))
+        self.assertFalse(tree.is_prefix('astatinf'))
+        self.assertFalse(tree.is_prefix('astatines'))
+
+                         
