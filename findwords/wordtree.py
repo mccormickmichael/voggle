@@ -6,10 +6,8 @@ class Node(object):
         self._children = None
         if len(word) is 1:
             self._is_word = True
-            print '{} true'.format(self._value)
         else:
             self._is_word = False
-            print '{} {} false'.format(self._value, word[1:])
             self._add_child(word[1:])
 
     def insert(self, word):
