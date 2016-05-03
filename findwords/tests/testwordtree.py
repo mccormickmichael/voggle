@@ -4,6 +4,7 @@ import unittest
 
 from .. import wordtree
 
+
 class TestWordTree(unittest.TestCase):
 
     def test_empty_dictionary(self):
@@ -56,5 +57,3 @@ class TestWordTree(unittest.TestCase):
         self.assertTrue(tree.is_prefix('astatin'))
         self.assertFalse(tree.is_prefix('astatinf'))
         self.assertFalse(tree.is_prefix('astatines'))
-
-                         
