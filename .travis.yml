@@ -3,6 +3,7 @@ python:
 - '2.7'
 script: python -m unittest discover
 deploy:
+  skip_cleanup: true
   provider: s3
   bucket: thousandleaves-web
   region: us-west-2
