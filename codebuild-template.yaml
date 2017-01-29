@@ -1,0 +1,40 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+
+Description: 'CodeBuild Demonstration Template'
+
+Resources:
+  BasicVoggleBuild:
+    Type: 'AWS::CodeBuild::Project'
+    Properties:
+      Name: 'BasicVoggleBuild'
+      Description: 'Basic CodeBuild definition for Voggle'
+      ServiceRole: !Ref BasicVoggleBuildRole
+      Source:
+        Type: GITHUB
+        Location: 'https://github.com/mccormickmichael/voggle.git'
+        # BuildSpec: BLAH.yaml
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        EnvironmentVariables: []
+        Image: 'aws/codebuild/eb-python-2.7-amazonlinux-64:2.1.6'
+        Type: LINUX_CONTAINER
+      Artifacts:
+        Type: S3
+        Location: !ImportValue ThousandleavesArtifactBucket
+        Path: voggle
+        NamespaceType: BUILD_ID
+        Name: results
+        Packaging: NONE
+      TimeoutInMinutes: 10
+      Tags: []
+  BasicVoggleBuildRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument: >
+        {"Version":"2012-10-17","Statement":{"Effect":"Allow","Principal":{"Service":"codebuild.amazonaws.com"},"Action":"sts:AssumeRole"}}
+      ManagedPolicyArns:
+        # TODO: replace with an account-specific policy
+        - arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess
+
+        
