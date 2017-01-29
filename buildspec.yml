@@ -7,24 +7,27 @@ environment_variables:
 
 phases:
   install:
+    # Install additional SW not included in the docker image
     commands:
-      - 'echo "Here I would be installing extra software for $PLATFORM"'
+      - 'echo "Here I prepare my platform"'
+      - 'apt-get -y install zip'
   pre_build:
+    # Prepare for executing the build. Maybe point to your artifactory, npm install, checkout more repos, etc.
     commands:
-      - 'echo "Here I would be setting up for the build, like using $ENV_KEY to check out other repos"'
-      - 'echo "More build setup, maybe inject build id $CODEBUILD_BUILD_ID"'
+      - 'echo "Here I prepare my environment"'
+      - 'pip install pytest'
+      - 'echo ${CODEBUILD_BUILD_ID} > manifest.txt'
   build:
+    # Compile, test, bundle, whatever produces deployable artifacts
     commands:
-      - 'echo "Here I would compile stuff if needed"'
-      - 'echo "Run some tests"'
+      - 'echo "Here I build and test things"'
       - 'python -m unittest discover'
   post_build:
+    # package up your deployables, generate deploy scripts, etc.
     commands:
       - 'echo "Here I package stuff for distribution"'
       - 'mkdir -p dist'
-      - 'which tar'
-      - 'which gzip'
-      - 'tar -cvf dist/thing.zip dictionary.txt findwords'
+      - 'zip -r dist/thing.zip dictionary.txt manifest.txt findwords -x \*.pyc'
 
 artifacts:
   files:
