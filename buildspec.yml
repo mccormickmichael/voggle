@@ -12,7 +12,7 @@ phases:
   pre_build:
     commands:
       - 'echo "Here I would be setting up for the build, like using $ENV_KEY to check out other repos"'
-      - 'echo "More build setup, maybe inject build id $BUILD_ID"'
+      - 'echo "More build setup, maybe inject build id $CODEBUILD_BUILD_ID"'
   build:
     commands:
       - 'echo "Here I would compile stuff if needed"'
