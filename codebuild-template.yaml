@@ -35,6 +35,7 @@ Resources:
         {"Version":"2012-10-17","Statement":{"Effect":"Allow","Principal":{"Service":"codebuild.amazonaws.com"},"Action":"sts:AssumeRole"}}
       ManagedPolicyArns:
         # TODO: replace with an account-specific policy
-        - arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess
+        - 'arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess'
+        - 'arn:aws:iam::aws:policy/CloudWatchLogsFullAccess'
 
         
