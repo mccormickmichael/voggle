@@ -22,7 +22,9 @@ phases:
     commands:
       - 'echo "Here I package stuff for distribution"'
       - 'mkdir -p dist'
-      - 'zip -cvf dist/thing.zip dictionary.txt findwords'
+      - 'which tar'
+      - 'which gzip'
+      - 'tar -cvf dist/thing.zip dictionary.txt findwords'
 
 artifact:
   files:
