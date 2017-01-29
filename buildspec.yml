@@ -5,22 +5,22 @@ environment_variables:
     ENV_KEY: 'environment-value'
     PLATFORM: 'shoes'
 
-  phases:
-    install:
-      - 'echo "Here I would be installing extra software for $PLATFORM"'
-    pre_build:
-      - 'echo "Here I would be setting up for the build, like using $ENV_KEY to check out other repos"'
-      - 'echo "More build setup, maybe inject build id $BUILD_ID"'
-    build:
-      - 'echo "Here I would compile stuff if needed"'
-      - 'echo "Run some tests"'
-      - 'python -m unittest discover'
-    post_build:
-      - 'echo "Here I package stuff for distribution"'
-      - 'mkdir -p dist'
-      - 'zip -cvf dist/thing.zip dictionary.txt findwords'
+phases:
+  install:
+    - 'echo "Here I would be installing extra software for $PLATFORM"'
+  pre_build:
+    - 'echo "Here I would be setting up for the build, like using $ENV_KEY to check out other repos"'
+    - 'echo "More build setup, maybe inject build id $BUILD_ID"'
+  build:
+    - 'echo "Here I would compile stuff if needed"'
+    - 'echo "Run some tests"'
+    - 'python -m unittest discover'
+  post_build:
+    - 'echo "Here I package stuff for distribution"'
+    - 'mkdir -p dist'
+    - 'zip -cvf dist/thing.zip dictionary.txt findwords'
 
-  artifact:
-    files:
-      - 'dist/*'
-    discard-paths: true
+artifact:
+  files:
+    - 'dist/*'
+  discard-paths: true
