@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 	"time"
-	"tl/dict"
+	"tl/voggle/internal/dict"
 )
 
 func main() {
@@ -15,7 +15,7 @@ func main() {
 
 	td := dict.NewTreeDict()
 
-	df, err := os.Open("../dictionary.txt")
+	df, err := os.Open("../../assets/dictionary.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

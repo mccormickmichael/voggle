@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"tl/dict"
+	"tl/voggle/internal/dict"
 )
 
 func main() {
-	d := dict.NewDict()
+	d := dict.NewTreeDict()
 	d.Add("a")
 	fmt.Println(d)
 }

@@ -12,7 +12,7 @@ func main() {
 	histo := make(map[int]int, 10)
 	var count, maxlen int
 
-	df, err := os.Open("../dictionary.txt")
+	df, err := os.Open("../../assets/dictionary.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

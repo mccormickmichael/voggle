@@ -72,7 +72,7 @@ func TestReconstitute(t *testing.T) {
 
 	td.Add("ant")
 
-	a.StringEquals("ant", td.match("ant").reconstitute(), "Reconstitute ant")
+	a.StringEquals("ant", td.match("ant").Reconstitute(), "Reconstitute ant")
 }
 
 func testPath(t *testing.T) {
@@ -82,7 +82,7 @@ func testPath(t *testing.T) {
 	td.Add("spam")
 
 	expected := []string{"s", "p", "a", "m"}
-	actual := td.match("spam").path()
+	actual := td.match("spam").Path()
 
 	if !reflect.DeepEqual(expected, actual) {
 		t.Error(actual)

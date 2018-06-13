@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"tl/dict"
+	"tl/voggle/internal/dict"
 )
 
 func main() {
