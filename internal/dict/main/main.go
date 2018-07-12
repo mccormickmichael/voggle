@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	d := dict.NewTreeDict()
+	d := dict.EmptyTreeDict()
 	d.Add("a")
 	fmt.Println(d)
 }

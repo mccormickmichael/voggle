@@ -6,7 +6,7 @@ import (
 )
 
 func TestConstructor(t *testing.T) {
-	rn := NewTreeDict()
+	rn := EmptyTreeDict()
 	if rn.count != 0 {
 		t.Errorf("Expected initial word count of 0 but got %d", rn.count)
 	}
@@ -24,7 +24,7 @@ func TestSplit(t *testing.T) {
 
 func TestAddOne(t *testing.T) {
 	a := assert{t}
-	td := NewTreeDict()
+	td := EmptyTreeDict()
 
 	td.Add("a")
 	a.IntEquals(1, td.count, "AddOne count")
@@ -32,7 +32,7 @@ func TestAddOne(t *testing.T) {
 
 func TestChildNode(t *testing.T) {
 	a := assert{t}
-	td := NewTreeDict()
+	td := EmptyTreeDict()
 
 	td.Add("as")
 
@@ -44,7 +44,7 @@ func TestChildNode(t *testing.T) {
 
 func TestIsWord(t *testing.T) {
 	a := assert{t}
-	td := NewTreeDict()
+	td := EmptyTreeDict()
 
 	td.Add("as")
 
@@ -56,7 +56,7 @@ func TestIsWord(t *testing.T) {
 
 func TestIsPrefix(t *testing.T) {
 	a := assert{t}
-	td := NewTreeDict()
+	td := EmptyTreeDict()
 
 	td.Add("ant")
 
@@ -68,7 +68,7 @@ func TestIsPrefix(t *testing.T) {
 
 func TestReconstitute(t *testing.T) {
 	a := assert{t}
-	td := NewTreeDict()
+	td := EmptyTreeDict()
 
 	td.Add("ant")
 
@@ -77,7 +77,7 @@ func TestReconstitute(t *testing.T) {
 
 func testPath(t *testing.T) {
 	//	a := assert{t}
-	td := NewTreeDict()
+	td := EmptyTreeDict()
 
 	td.Add("spam")
 

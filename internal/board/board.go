@@ -1,6 +1,7 @@
 package board
 
 import (
+	"fmt"
 	"math/rand"
 	"strings"
 )
@@ -18,6 +19,10 @@ type Cell struct {
 	Col int
 	Value string
 	Neighbors []*Cell
+}
+
+func (c *Cell) String() string {
+	return fmt.Sprintf("[%d %d %s]", c.Row, c.Col, c.Value)
 }
 
 func RandomBoard(source rand.Source) *Board {
@@ -128,6 +133,10 @@ func (b *Board) resolveNeighbors() {
 
 func (b *Board) At(row, col int) *Cell {
 	return b.cells[row][col]
+}
+
+func (b *Board) Row(row int) []*Cell {
+	return b.cells[row]
 }
 
 func (b *Board) String() string {

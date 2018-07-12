@@ -1,9 +1,12 @@
 package dict
 
 import (
+	"bufio"
 	"fmt"
-	// 	"strings"
+	"log"
+	"os"
 	"sort"
+	"strings"
 )
 
 type Node struct {
@@ -18,8 +21,25 @@ type TreeDict struct {
 	count int
 }
 
-func NewTreeDict() *TreeDict {
+func EmptyTreeDict() *TreeDict {
 	return &TreeDict{root: new(Node)}
+}
+
+func TreeDictFromPath(path string) *TreeDict {
+	dict := EmptyTreeDict()
+	df, err := os.Open(path)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer df.Close()
+	scanner := bufio.NewScanner(df)
+	for scanner.Scan() {
+		dict.Add(scanner.Text())
+	}
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
+	return dict
 }
 
 func (dict *TreeDict) Words() int {
@@ -38,7 +58,7 @@ func (dict *TreeDict) IsWord(word string) bool {
 	if len(word) == 0 {
 		return false
 	}
-	node := dict.match(word)
+	node := dict.match(strings.ToLower(word))
 	return node != nil && node.endsWord
 }
 
@@ -46,7 +66,7 @@ func (dict *TreeDict) IsPrefix(prefix string) bool {
 	if len(prefix) == 0 {
 		return false
 	}
-	node := dict.match(prefix)
+	node := dict.match(strings.ToLower(prefix))
 	return node != nil
 }
 

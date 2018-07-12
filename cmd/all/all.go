@@ -13,7 +13,7 @@ func main() {
 
 	start := time.Now()
 
-	td := dict.NewTreeDict()
+	td := dict.EmptyTreeDict()
 
 	df, err := os.Open("../../assets/dictionary.txt")
 	if err != nil {
